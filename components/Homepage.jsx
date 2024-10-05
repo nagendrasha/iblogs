@@ -1,17 +1,23 @@
-import React from "react";
+'use client'
 import Header from "./Header";
 import Posts from "./Posts";
 import Image from "next/image";
 import blogs from "../assets/images/blogs.png";
+import { useState, useEffect } from "react";
+import { useTheme } from '../app/context/ThemeContext';
+
 
 const Homepage = () => {
+
+  const { theme } = useTheme();
+
   return (
     <>
       <Header />
-      <section className="text-gray-600 body-font">
+      <section className={` ${theme === 'light' ? 'bg-white text-gray-600' : 'bg-black text-white'} body-font`}>
         <div className="container mx-auto flex px-5 py-24 md:flex-row flex-col items-center">
           <div className="lg:flex-grow md:w-1/2 lg:pr-24 md:pr-16 flex flex-col md:items-start md:text-left mb-16 md:mb-0 items-center text-center">
-            <h1 className="title-font sm:text-4xl text-3xl mb-4 font-medium text-gray-900">
+            <h1 className="title-font sm:text-4xl text-3xl mb-4 font-mediu">
               Welcome to iBlogs
               <br className="hidden lg:inline-block" />
             </h1>
