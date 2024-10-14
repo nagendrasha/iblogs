@@ -5,6 +5,7 @@ import Image from "next/image";
 import blogs from "../assets/images/blogs.png";
 import { useState, useEffect } from "react";
 import { useTheme } from '../app/context/ThemeContext';
+import Footer from "./Footer";
 
 
 const Homepage = () => {
@@ -43,6 +44,7 @@ const Homepage = () => {
         </div>
       </section>
       <Posts />
+      <Footer/>
     </>
   );
 };

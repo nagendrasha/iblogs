@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Section Layout</title>
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css"
+    />
+
+    <style>
+      .unique-section {
+        display: flex;
+        height: 100vh;
+        padding: 24px;
+        /*background-color: #f8f8f8;*/
+      }
+      .unique-slider-container {
+        width: 40%;
+        height: calc(100% - 20px);
+        background-color: #fff;
+        border-radius: 15px;
+        overflow: hidden;
+        position: relative;
+      }
+      .unique-slider-container .owl-carousel .item img {
+        width: 100%;
+        height: 100vh;
+        background: cover;
+        object-fit: cover;
+      }
+      .unique-slider-container .heading {
+        position: absolute;
+        bottom: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        font-size: 42px;
+        font-weight: bold;
+        text-align: center;
+        color: #fff;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        padding: 10px;
+        border-radius: 5px;
+        z-index: 10;
+      }
+      .unique-owl-dots {
+        position: absolute;
+        bottom: 10px;
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        gap: 8px;
+      }
+      .unique-owl-dots .owl-dot {
+        background: #d3d3d3;
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        display: inline-block;
+        transition: background 0.3s;
+      }
+      .unique-owl-dots .owl-dot.active {
+        background: #fff;
+      }
+      .unique-content-container {
+        width: 60%;
+        height: calc(100% - 20px);
+        display: flex;
+        flex-direction: column;
+        margin-left: 20px;
+      }
+      .unique-content-box {
+        flex: 2;
+        padding: 20px;
+        background-color: #150055;
+        color: #fff;
+        box-sizing: border-box;
+        border-radius: 15px;
+        margin-bottom: 10px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        text-align: center;
+      }
+      .unique-content-box h2 {
+        margin: 0;
+        padding-bottom: 20px;
+        color: #fff;
+        text-align: center;
+      }
+      .unique-content-box iframe {
+        width: 100%;
+        height: 315px;
+        display: block;
+        margin-bottom: 20px;
+        border: none;
+        border-radius: 10px;
+      }
+      .unique-content-box .know-more {
+        color: #fff;
+        font-size: 18px;
+        text-decoration: underline;
+        text-decoration-thickness: 2px;
+        text-underline-offset: 6px;
+        text-align: center;
+        cursor: pointer;
+        margin-bottom: 20px;
+      }
+      .unique-footer-box {
+        width: 100%;
+        background-color: #150055;
+        text-align: center;
+        padding: 10px;
+        font-size: 24px;
+        font-weight: bold;
+        color: #fff;
+        border-radius: 15px;
+        flex-grow: 0.5;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+      }
+      .unique-span-text {
+        font-size: 42px;
+        font-weight: bold;
+        color: #fff;
+        margin-top: 5px;
+      }
+      @media (max-width: 768px) {
+        .unique-section {
+          flex-direction: column;
+          height: auto;
+        }
+
+        .unique-slider-container {
+          width: 100%;
+          height: auto;
+          background-size: contain;
+        }
+
+        .unique-slider-container .owl-carousel .item img {
+          width: 100%;
+          height: 100%;
+          background: cover;
+          object-fit: cover;
+        }
+        .unique-content-container {
+          width: 100%;
+          margin-left: 0;
+          margin-top: 20px;
+          font-size: 32px;
+        }
+        .unique-slider-container .heading {
+          font-size: 5vw;
+        }
+        .unique-content-box h2 {
+          font-size: 4vw;
+        }
+        .unique-footer-box {
+          font-size: 5vw;
+        }
+        .unique-span-text {
+          font-size: 8vw;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <section class="unique-section px-lg-5 px-sm-0">
+      <div class="unique-slider-container card shadow">
+        <div id="unique-carousel" class="owl-carousel">
+          <div class="item">
+            <img
+              src="{{ getImage('assets/global/winner/w1.jpg') }}"
+              alt="Slide 1"
+            />
+          </div>
+          <div class="item">
+            <img
+              src="{{ getImage('assets/global/winner/w2.jpg') }}"
+              alt="Slide 2"
+            />
+          </div>
+          <div class="item">
+            <img
+              src="{{ getImage('assets/global/winner/w3.jpg') }}"
+              alt="Slide 3"
+            />
+          </div>
+        </div>
+        <!--<div class="heading">Grand Prize Winners</div>-->
+
+        <div class="unique-owl-dots"></div>
+      </div>
+
+      <div class="unique-content-container">
+        <div class="unique-content-box">
+          <h2>MEET OUR LUCKY WINNERS</h2>
+          <iframe
+            src="https://www.youtube.com/embed/ahy5o5nT4oI?autoplay=1&mute=1"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; 
+                picture-in-picture"
+            allowfullscreen
+          ></iframe>
+
+          <div class="know-more">Know More</div>
+        </div>
+        <div class="unique-footer-box">
+          TOTAL WINNERS &<br />COUNTING...
+          <!--<div class="unique-span-text">998,642</div>-->
+          <h1 id="counter" class="unique-span-text">998,642</h1>
+        </div>
+      </div>
+    </section>
+
+    <script>
+      let counterElement = document.getElementById("counter");
+      let currentNumber = 998642;
+      let incrementValue = 1; // You can change this if you want to increment by more than 1
+
+      function incrementCounter() {
+        // Increment the last two digits and update the counter display
+        currentNumber += incrementValue;
+        counterElement.textContent = currentNumber.toLocaleString();
+      }
+      // Call the function every 10 seconds
+      setInterval(incrementCounter, 3000);
+    </script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+
+    <script>
+      $(document).ready(function () {
+        $("#unique-carousel").owlCarousel({
+          items: 1,
+          loop: true,
+          autoplay: true,
+          nav: false,
+          dots: true,
+          autoplayTimeout: 3000,
+        });
+      });
+    </script>
+  </body>
+</html>
