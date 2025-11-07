@@ -39,7 +39,7 @@ const Homepage = () => {
             </div>
           </div>
           <div className="lg:max-w-lg lg:w-full md:w-1/2 w-5/6">
-            <Image src={blogs}  className="w-auto" />
+            <Image src={blogs}  className="w-auto" alt = "blog image" />
           </div>
         </div>
       </section>

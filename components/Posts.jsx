@@ -56,7 +56,7 @@ const Posts = () => {
         } body-font`}
       >
         <div className="container px-20">
-          <h1 classNameName="mb-3 text-2xl font-bold">Recent Blogs Posts</h1>
+          <h1 className="mb-3 text-2xl font-bold">Recent Blogs Posts</h1>
         </div>
         <div className="container mx-auto flex px-5 py-10 md:flex-row flex-col items-center">
           <div className="flex flex-wrap -m-4">

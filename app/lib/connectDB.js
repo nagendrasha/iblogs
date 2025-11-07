@@ -1,23 +1,30 @@
-// lib/connectDB.js
 import mongoose from 'mongoose';
 
+const MONGODB_URI = process.env.MONGO_URL;
+
+if (!MONGODB_URI) {
+  throw new Error('MONGO_URL is not defined in environment variables');
+}
+
+let cached = global.mongoose;
+
+if (!cached) {
+  cached = global.mongoose = { conn: null, promise: null };
+}
+
 const connectDB = async () => {
-  if (mongoose.connections[0].readyState) {
-    console.log('✅ Already connected to MongoDB');
-    return;
+  if (cached.conn) {
+    return cached.conn;
   }
-  try {
-    await mongoose.connect(process.env.MONGO_URL);
-    console.log('✅ MongoDB connection established');
-  } catch (error) {
-    console.error('❌ MongoDB connection failed:', error.message);
-    throw error; // Don't exit process in Next.js, just throw the error
+
+  if (!cached.promise) {
+    cached.promise = mongoose.connect(MONGODB_URI, { bufferCommands: false });
   }
+
+  cached.conn = await cached.promise;
+  return cached.conn;
 };
 
-// Export both default and named exports for flexibility
 export default connectDB;
 export { connectDB };
-
-// Export connection string for direct use if needed
-export const connectionStr = process.env.MONGO_URL;
+export const connectionStr = MONGODB_URI;
