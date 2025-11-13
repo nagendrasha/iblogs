@@ -1,52 +1,28 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useTheme } from "../app/context/ThemeContext";
 import Image from "next/image";
 
 const Posts = () => {
   const { theme } = useTheme();
 
-  const posts = [
-    {
-      id: 1,
-      title: "Post 1",
-      content: "This is the content of post 1",
-      image: "https://picsum.photos/200/300",
-      author: "John Doe",
-      views: "6",
-      comment: "10",
-      date: "2022-01-01",
-    },
-    {
-      id: 2,
-      title: "Post 2",
-      image: "https://picsum.photos/200/300",
-      content: "This is the content of post 2",
-      author: "Jane Doe",
-      views: "7",
-      comment: "11",
-      date: "2022-01-02",
-    },
-    {
-      id: 3,
-      title: "Post 3",
-      image: "https://picsum.photos/200/300",
-      content: "This is the content of post 3",
-      author: "John Doe",
-      views: "8",
-      comment: "12",
-      date: "2022-01-03",
-    },
-    {
-      id: 4,
-      title: "Post 4",
-      image: "https://picsum.photos/200/300",
-      content: "This is the content of post 4",
-      author: "Jane Doe",
-      views: "9",
-      comment: "13",
-      date: "2022-01-04",
-    },
-  ];
+  const [posts, setPosts] = useState([]);
+
+  const getAllPosts = async () => {
+    try {
+      const response = await fetch("/api/posts");
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+      const data = await response.json();
+      setPosts(data);
+    } catch (error) {
+      console.error("Error fetching posts:", error);
+    }
+  };
+
+  useEffect(() => {
+    getAllPosts();
+  }, []);
 
   return (
     <>
@@ -66,7 +42,6 @@ const Posts = () => {
                   <Image
                     className="lg:h-48 md:h-36 w-full object-cover object-center"
                     src={post.image}
-                    
                     alt="blog"
                     width={200}
                     height={200}
@@ -80,7 +55,7 @@ const Posts = () => {
                     </h1>
                     <p className="leading-relaxed mb-3">{post.content}</p>
                     <div className="flex items-center flex-wrap ">
-                      <a className="text-indigo-500 inline-flex items-center md:mb-2 lg:mb-0">
+                      <a className="text-indigo-500 inline-flex items-center md:mb-2 lg:mb-0" href={`/posts/${post._id}`}>
                         Learn More
                         <svg
                           className="w-4 h-4 ml-2"

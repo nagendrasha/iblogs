@@ -1,44 +1,20 @@
 import { connectDB } from "@/app/lib/connectDB";
 import { Post } from "@/app/lib/model/post";
 import { NextResponse } from "next/server";
+import mongoose from "mongoose";
 
-export async function DELETE(request) {
+
+export async function GET(request, { params }) {
+  await connectDB();
+  const { id } = params;
+
   try {
-    // Connect to database
-    await connectDB();
-    
-    // Parse the request body
-    const body = await request.json();
-    const { id } = body;
-    
-    // Validate ID
-    if (!id) {
-      return NextResponse.json(
-        { message: "Post ID is required" }, 
-        { status: 400 }
-      );
+    const post = await Post.findById(id);
+    if (!post) {
+      return NextResponse.json({ message: "Post not found" }, { status: 404 });
     }
-    
-    // Delete post by ID
-    const deletedPost = await Post.findByIdAndDelete(id);
-    
-    if (!deletedPost) {
-      return NextResponse.json(
-        { message: "Post not found" }, 
-        { status: 404 }
-      );
-    }
-    
-    return NextResponse.json(
-      { message: "Post deleted successfully!" }, 
-      { status: 200 }
-    );
-    
+    return NextResponse.json(post, { status: 200 });
   } catch (error) {
-    console.error("Error deleting post:", error);
-    return NextResponse.json(
-      { message: "Error deleting post", error: error.message }, 
-      { status: 500 }
-    );
+    return NextResponse.json({ message: "Error fetching post", error }, { status: 500 });
   }
-} 
+}

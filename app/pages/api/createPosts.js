@@ -1,7 +1,7 @@
 // pages/api/createPost.js
 import { MongoClient } from 'mongodb';
 
-const uri = process.env.MONGODB_URI; // Set up your MongoDB URI in environment variables
+const uri = process.env.MONGODB_URI;
 const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
 
 export default async function handler(req, res) {
